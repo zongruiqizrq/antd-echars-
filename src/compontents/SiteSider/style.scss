@@ -1,0 +1,39 @@
+.page{
+    background:#19274E; 
+    .logo{
+        padding:15px 0px 40px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        .logo_img{
+            max-height: 40px;
+        }
+    }
+    .menu{
+        background:#19274E; 
+        .item{
+            margin:0px;
+            height:48px;
+            line-height:48px;
+            padding-left: 44px !important;
+            .nav-text{
+                color:#fff;
+                font-size:16px;
+            }
+            
+            
+        }
+        .active{
+            margin:0px;
+            height:48px;
+            line-height:48px;
+            padding-left: 44px !important;
+            background-color: #1F3261;
+            .nav-text{
+                color:#fff;
+                font-size:16px;
+            }
+        }
+        
+    }
+}

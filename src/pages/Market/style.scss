@@ -1,0 +1,140 @@
+.market{
+    .search{
+        position: absolute;
+        top: 15px;
+        left: 25%;
+        width: 50%;
+        input{
+            background:#F6F6F8 ;
+            border:none;
+        }
+        button{
+            background: #2A5082;
+            border:none;
+            width: 90px !important;
+        }
+    }
+    .content{
+        width: 100%;
+        display:flex;
+        
+        .left{
+            width: 70%;
+            margin-right:20px;
+            .count{
+                background: #fff;
+                height: 209px;
+                display:flex;
+                align-items: center;
+                margin-bottom: 20px;
+                .item{
+                    display:flex;
+                    padding:0px 30px 0px 45px ;
+                    border-right:1px solid rgba(190, 202, 216, 0.3);
+                    .icon{
+                        font-size: 100px;
+                        margin-right:5px;
+                    }
+                    .title{
+                        display: block;
+                        font-size: 18px;
+                    }
+                    .num{
+                        font-size: 40px;
+                        color: #3A3B46;
+                        display: block;
+                    }
+                    &:last-child{border-right:0px}
+                }
+                
+            } 
+            .history-box{
+                padding:10px 20px;
+                height:570px;
+                .ant-card-head{
+                    position: relative;
+                    border:none;
+                    .ant-card-head-title{
+                        position: absolute;
+                        top:8px;
+                        left:25px;
+                    }
+                    &:before{
+                        content: '';
+                        width:5px;
+                        height:18px;
+                        background: #BECAD8;
+                        position: absolute;
+                        top:28px;
+                        left:13px;
+                    }
+                }
+                
+                .ant-card-body{
+                    .ant-tabs{
+                        overflow: inherit;
+                        .ant-tabs-bar{
+                            position: absolute;
+                            top:-60px;
+                            right: 0px;
+                            border-bottom: 0;
+                            .ant-tabs-nav-container{
+                                height:32px;
+                                font-size: 14px;
+                            }
+                            .ant-tabs-nav{
+                                .ant-tabs-tab{
+                                    border:1px solid #BECAD8;
+                                    margin:0px;
+                                    padding:0px;
+                                    height:30px;
+                                    line-height: 30px;
+                                    width:100px;
+                                    text-align: center;
+                                    color:#7D8CA1;
+                                    &:nth-child(even){
+                                        border-left: 0;
+                                        border-right: 0;
+                                    }
+                                        &:last-child{border-right: 1px solid #e8e8e8;}
+                                }
+                                .ant-tabs-tab-active{
+                                    background:#2A5082;
+                                    color:#fff;
+                                    border-color:#2A5082;
+                                    font-weight: normal;
+                                }
+                                .ant-tabs-ink-bar{
+                                    height:0px;
+                                }
+                            }
+                        }
+                            .ant-tabs-content{
+                                .ant-tabs-tabpane{
+                                    position: relative;
+                                }
+                                .ant-select{
+                                    position: absolute;
+                                    right:0px;
+                                    top:-8px;
+                                    z-index: 999;
+                                .ant-select-selection{
+                                     border-radius: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+        }
+                
+        }
+        .right{
+            width: 30%;
+            background: #fff;
+            height: 300px;
+        }
+
+    }
+    
+    
+}

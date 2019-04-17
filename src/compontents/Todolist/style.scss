@@ -1,0 +1,56 @@
+.page{
+    margin: 0 auto;
+    width: 300px;
+    text-align: center;
+    .input{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        text-align: center;
+    }
+    .list{
+        width: 90%;
+        padding:0px 20px;
+        text-align: center;
+        ul{
+            padding:20px 0px;
+            
+            .list-item{
+                display: flex;
+                height: 30px;
+                justify-content: space-between;
+                align-content: center;
+                .left{
+                    display: flex;
+                    input{
+                        width: 20px;
+                        height: 20px;
+                    }
+                    li{
+                        list-style: none;
+                        margin-right: 20px;
+                    }
+                    .finished{
+                        text-decoration:line-through;
+
+                    }
+                }
+               
+            }
+        }
+        
+    }
+    h3{
+        font-weight:700;
+        .total{
+            color: orange;
+        }
+        .finished{
+            color: green;
+        }
+        .unfinished{
+            color: red; 
+        }
+    }
+}
