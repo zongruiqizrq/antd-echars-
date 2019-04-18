@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {observer,inject} from 'mobx-react';
 import {observable} from 'mobx';
+import classname from 'classname'
 import { Input,Icon,Card, Tabs, Select  } from 'antd';
 import './style.scss'
 
@@ -44,7 +45,21 @@ function handleChange(value) {
         date: ['2014','2015', '2016', '2017', '2018'],
         name: "风险",
         data: [120, 252, 176, 184,69],
-      }
+      },
+      risk_list:[
+        {id:1,icon:'home',title:'房地产',num:23},
+        {id:2,icon:'home',title:'金融',num:45},
+        {id:3,icon:'home',title:'餐饮',num:66},
+        {id:4,icon:'home',title:'环保',num:75},
+        {id:5,icon:'home',title:'科技',num:90},
+      ],
+      fchange_list:[
+        {id:1,icon:'home',title:'房地产',num:23},
+        {id:2,icon:'home',title:'金融',num:45},
+        {id:3,icon:'home',title:'餐饮',num:66},
+        {id:4,icon:'home',title:'环保',num:75},
+        {id:5,icon:'home',title:'科技',num:90},
+      ]
      }
    }
    getOption = (value) => {
@@ -121,12 +136,11 @@ function handleChange(value) {
     return option
   }
   render() {
-    const {count, option, one_year,three_year, five_year} = this.state
+    const {count, option, one_year,three_year, five_year, risk_list, fchange_list} = this.state
     return (
       <div className='market'>
         <div className='search'>
           <Search
-            className='search_input'
             placeholder="请输入公司名字，代码或简称"
             enterButton="搜索"
             size="large"
@@ -186,8 +200,39 @@ function handleChange(value) {
             </Card>    
         </div>
         <div className='right'>
-
+          <div className='risk-list'>
+            <div className='title'>本报告期行业风险榜</div>
+            <ul className='list'>
+            {
+              risk_list.map((item,index) => {
+                return <li key={index} className='item'>
+                  <span className='id'>{item.id}.</span>
+                  <Icon type={item.icon} className='icon' />
+                  <span className='title'>{item.title}</span>
+                  <span className='num'>{item.num}</span>
+                </li>
+              })
+            }
+            </ul>
+          </div>
+          <div className={classname('fchange-list','risk-list')}>
+            <div className='title'>本报告期财务移动榜</div>
+            <ul className='list'>
+                {fchange_list.map((item,index) => {
+                   return <li key={index} className='item'>
+                   <span className='id'>{item.id}.</span>
+                   <Icon type={item.icon} className='icon' />
+                   <span className='title'>{item.title}</span>
+                   <span className='num'>
+                    <Icon type="arrow-up" style={{marginRight:'10px'}} />
+                    {item.num}%
+                   </span>
+                 </li>
+                })}
+            </ul>
+          </div>
         </div>
+        
     </div>
         
        
