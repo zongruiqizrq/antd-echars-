@@ -87,7 +87,15 @@ const Pages = [
         path: '/market/riskDetails',
         component: b((s) => import('./pages/Market/RiskDetails').then(l(s)), '风险详情', true),
     },
-    
+    {
+        path: '/login/:lastPage',
+        component: b((s) => import('./pages/Login').then(l(s)), 'Login'),
+    },
+
+    {
+        path: '/login',
+        component: b((s) => import('./pages/Login').then(l(s)), 'Login'),
+    },
 
 ]
 
