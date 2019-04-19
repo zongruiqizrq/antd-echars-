@@ -7,9 +7,6 @@ let echartLastEnd = null
 export default class EchartsWrapper extends React.Component {
  
 
-    constructor(props) {
-        super(props)
-    }
 
     //  shouldcomponentUpdate(nextProps) {
     //     // if (JSON.stringify(nextProps) !== JSON.stringify(this.props)) {

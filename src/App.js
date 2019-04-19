@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Route, Router } from 'react-router-dom';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 
-import {Layout, Menu, Breadcrumb, LocaleProvider} from 'antd';
+import {Layout,  LocaleProvider} from 'antd';
 import './app.scss'
 import SiteSider from './compontents/SiteSider'
 import Header from './compontents/Header'
 import history from './history'
 import Pages from './pageSwitch'
 
-const { Content, Footer, Sider,} = Layout;
+const { Content} = Layout;
 
 const pages = Pages.map((p) => (
   <Route 
@@ -20,14 +20,13 @@ const pages = Pages.map((p) => (
   />
 ))
 
+
 const LocalApp = () => (
   <Router history={history}>
+    
       <Layout className='layout'>
           <SiteSider />
-          <Content
-            // className='content'
-             
-          >
+          <Content>
               <Header style={{background:'white'}}/>
               <div className="container">
                   {pages}
@@ -36,8 +35,11 @@ const LocalApp = () => (
       </Layout>
   </Router>
 )
+
 class App extends Component {
+  
   render() {
+   
     return (
       <LocaleProvider locale={zhCN}>
             <LocalApp/>

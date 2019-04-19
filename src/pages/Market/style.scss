@@ -17,9 +17,8 @@
     .content{
         width: 100%;
         display:flex;
-        
         .left{
-            width: 70%;
+            width: 80%;
             margin-right:20px;
             .count{
                 background: #fff;
@@ -29,10 +28,11 @@
                 margin-bottom: 20px;
                 .item{
                     display:flex;
-                    padding:0px 30px 0px 45px ;
+                    flex: 1;
+                    padding:0px 3% 0px 3% ;
                     border-right:1px solid rgba(190, 202, 216, 0.3);
                     .icon{
-                        font-size: 100px;
+                        font-size: 90px;
                         margin-right:5px;
                     }
                     .title{

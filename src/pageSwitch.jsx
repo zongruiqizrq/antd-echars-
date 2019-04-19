@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { checkLogin } from './utils/user'
 
 
 
@@ -21,9 +22,13 @@ class AsyncComponent extends React.Component {
     }
 
  componentDidMount() {
-        if (this.props.needLogin) {
+    if (this.props.needLogin) {
+        if (checkLogin()) {
             this.props.require(this)
         }
+    } else {
+        this.props.require(this)
+    }
     } 
 
      render() {

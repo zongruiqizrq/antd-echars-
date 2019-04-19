@@ -51,7 +51,7 @@ export default class SiteSider extends Component {
   render() {
     const { active, mouseCover} = this.state
     return (
-      <Sider  width={mouseCover ? 264 : 50} className='page'>
+      <Sider  width={mouseCover ? 180 : 50} className='page'>
         <div className="logo">
           <img src={logo} alt="logo" className='logo_img'/>
         </div>
