@@ -9,10 +9,10 @@ const IconFont = Icon.createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_1137351_6orhia7r9t3.js',
 });
 
-export default class Icons extends React.Component<any, any>  {
+export default class Icons extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    type:PropTypes.string.isRequired
+    type: PropTypes.string.isRequired
   }
 
   render() {
@@ -20,7 +20,7 @@ export default class Icons extends React.Component<any, any>  {
     const type = this.props.type
 
     return (
-      <IconFont type={type} className={class_name} style={{fontSize:'18px'}} />
+      <IconFont type={type} className={class_name} style={{ fontSize: '18px' }} />
     )
   }
 }

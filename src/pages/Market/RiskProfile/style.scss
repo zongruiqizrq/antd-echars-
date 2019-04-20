@@ -1,0 +1,296 @@
+.risk-box{
+    .search{
+        position: absolute;
+        top: 15px;
+        left: 25%;
+        width: 50%;
+        input{
+            background:#F6F6F8 ;
+            border:none;
+        }
+        button{
+            background: #2A5082;
+            border:none;
+            width: 90px !important;
+        }
+    }
+    .content{
+        width: 100%;
+        .content-top{
+            width: 100%;
+            height: 454px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+           .company{
+                width: 30%;
+                height: 100%;
+                background: #fff;
+                margin-right: 20px;
+                padding:30px 20px;
+                .logo{
+                    text-align: center;
+                    .name{
+                        font-size: 20px;
+                        color:#3A3B46
+                    }
+                }
+                .list{
+                    ul{
+                        list-style: none;
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        flex-wrap: wrap;
+                        padding:0px;
+                        li{
+                            width: 50%;
+                            text-align: center;
+                            padding:15px 0px;
+                            max-height:75px;
+                            &:first-child,&:nth-child(2){
+                                border-bottom: 1px solid rgba(190,202,216,.3);
+                              }
+                  
+                              &:nth-child(odd){
+                                border-right: 1px solid rgba(190,202,216,.3);
+                              }
+                              h4{
+                                font-size: 16px;
+                                color:#3A3B46;
+                                margin:0px;
+                              }
+                              p{
+                                  font-size: 14px;
+                                  color:#6B798E;
+                              }
+                              .red{
+                                color:#E62129;
+                              }
+                              .jump{
+                                text-decoration:underline
+                              }
+                        }
+                    }
+                }   
+           } 
+           .finance{
+               width: 70%;
+               height: 100%;
+               background: #fff;
+               padding:20px 30px;
+               .financial-status{
+                overflow: hidden;
+                   .ant-card-head{
+                       position: relative;
+                       border:none;
+                   }
+                   &:before{
+                    content: '';
+                    width:5px;
+                    height:18px;
+                    background: #BECAD8;
+                    position: absolute;
+                    top:20px;
+                    left:13px;
+                }
+                   .ant-card-body{
+                       padding:0px;
+                       margin: 0px;
+                       .ant-tabs{
+                        // 规定应该从父元素继承 overflow 属性的值。
+                        overflow: inherit;
+                           .ant-tabs-bar{
+                               position: absolute;
+                               top:-45px;
+                               right: 0px;
+                               border:none;
+                           }
+                           .ant-tabs-nav-container{
+                               height: 32px;font-size: 14px;
+                           }
+                           .ant-tabs-nav{
+                               .ant-tabs-tab{
+                                   border:1px solid #BECAD8;
+                                   margin: 0px;
+                                   padding:0px;
+                                   height: 30px;
+                                   line-height: 30px;
+                                   width: 100px;
+                                   text-align: center;
+                                   color: #7D8CA1;
+                                   border-radius: 0;
+                                   &:nth-child(even){
+                                    border-left: 0;
+                                    border-right: 0;
+                                  }
+                                  &:last-child{border-right: 1px solid #e8e8e8;}
+                               }
+                               .ant-tabs-tab-active{
+                                    background:#2A5082;
+                                    color:#fff;
+                                    border-color:#2A5082;
+                                    font-weight: normal;
+                                }
+                                .ant-tabs-ink-bar{
+                                    height:0px;
+                                }
+                           }
+                           
+                       }
+                       .ant-tabs-content{
+                        .ant-tabs-tabpane{
+                          display: flex;
+                        }
+                      }
+                      .left{
+                          width: 45%;
+                      }
+                      .right{
+                        width: 55%;
+                        margin-left:2%;
+                        padding:10px 40px;
+                        box-shadow:0px 5px 24px 0px rgba(0,66,166,0.05);
+                        margin-top: 20px;
+                        .content{
+                            padding: 10px;
+                            border-bottom: 1px solid #ddd;
+                            .item{
+                                display: flex;
+                                line-height: 40px;
+                                span{
+                                    display: block;
+                                    color: #6B798E;
+                                    &:first-child{width:110px;}
+                                }
+                                .em-list{
+                                    position: relative;
+                                    display: flex;
+                                    top:-5px;
+                                    em{
+                                      font-style: normal;
+                                      width:48px;
+                                      height: 30px;
+                                      line-height: 15px;
+                                      font-size: 12px;
+                                      text-align: center;
+                                      margin-right: 5px;
+                                      border-bottom: 8px solid #2FC25B;
+                                      color:#2FC25B;
+                                      i{
+                                        font-style: normal;
+                                        position: relative;
+                                        &::after{
+                                          content: '';
+                                          width: 1px;
+                                          border: 5px solid #2FC25B;
+                                          border-left-color:transparent;
+                                          border-right-color:transparent;
+                                          border-bottom-color:transparent;
+                                          position: absolute;
+                                          bottom: -10px;
+                                          left: 38%;
+                                        }
+                                      }
+                                      &:nth-child(2){
+                                        border-color: #FFAB2D;
+                                        color:#FFAB2D;
+                                        i:after{
+                                          border-top-color: #FFAB2D;
+                                        }
+                                      }
+                                      &:last-child{
+                                        border-color: #E62129;
+                                        color:#E62129;
+                                        i:after{
+                                          border-top-color: #E62129;
+                                        }
+                                      }
+                                      
+                                    }
+                                  }
+                            }
+
+                        }
+                        .icon-list{
+                            list-style: none;
+                            display: flex;
+                            flex-wrap: wrap;
+                            padding:0;
+                            .item{
+                              width:33%;
+                              margin-top: 16px;
+                              line-height: 25px; 
+                              .title{
+                                  display: inline-block;
+                                  width: 75px;
+                                  color:#6B798E;
+                              } 
+                              .value{
+                                color:#3A3B46;
+                              }
+                            }
+                        }
+                        .foot{
+                            .more{
+                                width:114px;
+                                height:40px;
+                                line-height: 40px;
+                                text-align: center;
+                                display: block;
+                                color:#fff;
+                                background:#2A5082;
+                                border-radius:2px;
+                            }
+                        }
+                    }
+                   }
+               }
+           }
+        }
+
+    }
+    .risk-trend{
+        width: 100%;
+        // height:360px ;
+        background: #fff;
+        margin-top: 20px;
+        padding:20px;
+        .ant-card-head{
+            border:none;
+            position: relative;
+            &::before{
+                content: '';
+                width:5px;
+                height:18px;
+                background: #BECAD8;
+                position: absolute;
+                top:20px;
+                left:13px;
+            }
+        }
+         .ant-card-body{
+            margin: 0px;
+            padding-top:0px;
+            padding-bottom:0px;
+        }
+        
+    }
+    .content-top1{
+        display:flex;
+        width: 100%;
+        height: 500px;
+
+        margin-top:20px;
+        .overall-ranking{
+            width: 50%;
+            background: #fff;
+            margin-right: 20px;
+
+        }
+        .performance-gain{
+            width: 50%;
+            background: #fff;
+        }
+    }
+}
