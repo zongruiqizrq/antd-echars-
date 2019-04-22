@@ -3,16 +3,17 @@ import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import classname from 'classname'
 import { Link } from 'react-router-dom';
-import { Input, Card, Tabs, Select, Typography } from 'antd';
+import { Input, Card, Tabs, Select, Typography, Tooltip, Table, Icon } from 'antd';
 import './style.scss'
 import EchartsWrapper from '../../../compontents/EchartsWrapper'
-import Icon from '../../../compontents/Icons'
+import Icons from '../../../compontents/Icons'
 const Search = Input.Search;
 const { Paragraph } = Typography;
 const TabPane = Tabs.TabPane;
 function callback(key) {
   console.log(key);
 }
+
 @observer
 class RiskProfile extends Component {
   //  header上边搜索的内容
@@ -141,7 +142,97 @@ class RiskProfile extends Component {
               },
             ]
           },
-        }
+        },
+        rink: {
+          compare: '财务状况好于67%的企业',
+          date: ['2017第一季度', '2017中报', '2017第三季度', '2017年报'],
+          name: '中信股份',
+          data: [66, 52, 96, 34]
+        },
+        income: {
+          compare: "业绩收益好于67%的企业",
+          date: ["2017第一季度", "2017中报", "2017第三季度", "2017年报"],
+          incomeData: [
+            {
+              name: "中信股份",
+              data: [2.5, 1.8, -2.1, 1.5]
+            },
+            {
+              name: "平均行业",
+              data: [-0.6, 1.3, 2.5, 1.7]
+            }
+          ]
+        },
+        profit: {
+          score: '77.9',
+          data_source: [
+            {
+              key: "1",
+              index: '流动比率',
+              ranking: '22/165',
+              status: 0
+            },
+            {
+              key: "2",
+              index: '现金比例',
+              ranking: '42/165',
+              status: 1
+            },
+            {
+              key: "3",
+              index: '已获利息倍率',
+              ranking: '52/165',
+              status: 0
+            }
+          ]
+        },
+        ability:{
+          score: '30.9',
+          data_source: [
+            {
+              key: "1",
+              index: '流动比率',
+              ranking: '22/165',
+              status: 0
+            },
+            {
+              key: "2",
+              index: '现金比例',
+              ranking: '42/165',
+              status: 1
+            },
+            {
+              key: "3",
+              index: '已获利息倍率',
+              ranking: '52/165',
+              status: 0
+            }
+          ]
+        },
+        // 近期风险事件
+        recent_risk_event:[
+          {
+            title:'内幕交易中信被证监会处罚3.12亿',
+            date:'2019.03.12',
+            score:30
+          },
+          {
+            title:'内幕交易中信被证监会处罚3.12亿',
+            date:'2019.03.12',
+            score:0
+          },
+          {
+            title:'内幕交易中信被证监会处罚3.12亿',
+            date:'2019.03.12',
+            score:90
+          },
+          {
+            title:'内幕交易中信被证监会处罚3.12亿',
+            date:'2019.03.12',
+            score:30
+          }
+        ]
+        
       }
     }
   }
@@ -313,8 +404,237 @@ class RiskProfile extends Component {
     };
     return option;
   }
+  // 总排名
+  OverallRanking = (value) => {
+    const option = {
+      title: {},
+      tooltip: {
+        trigger: "axis",
+        axisPointer: {
+          type: "cross",
+          label: {
+            backgroundColor: "#6a7985"
+          }
+        }
+      },
+      legend: {},
+      grid: {
+        left: '2%',
+        right: '4%',
+        bottom: '3%',
+        top: '40px',
+        containLabel: true
+      },
+      // 下载的按钮
+      // toolbox: {
+      //     feature: {
+      //         saveAsImage: {}
+      //     }
+      // },
+      xAxis: {
+        type: 'category',
+        axisLine: {
+          lineStyle: {
+            color: "#6B798E",
+            fontSize: "12px"
+          }
+        },
+        data: value.date
+      },
+      yAxis: {
+        type: 'value',
+        axisLine: {
+          lineStyle: {
+            color: "#6B798E",
+            fontSize: "12px"
+          }
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            type: "dashed"
+          }
+        }
+      },
+      series: [
+        {
+          name: value.name,
+          type: 'line',
+          symbolSize: 8,   //折线点的大小
+          label: { //线上的文字 是否显示
+            normal: {
+              show: true,
+              position: 'top'
+            }
+          },
+          // 折线颜色
+          itemStyle: {
+            normal: {
+              // 线上数字的颜色
+              color: '#53A0FD',
+              lineStyle: {
+                color: '#53A0FD',
+                width: 3
+              }
+            },
+          },
+          data: value.data
+        }
+      ]
+    };
+    return option
+  }
+
+  // 业绩收益
+  performanceGain = (value) => {
+    const option = {
+      legend: {},
+      tooltip: {
+        tigger: "axis",
+        axisPointer: {
+          // 坐标轴指示器，坐标轴触发有效
+          type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+        },
+      },
+      xAxis: {
+        type: "category",
+        axisLine: {
+          lineStyle: {
+            color: "#6B798E",
+            fontSize: "12px"
+          }
+        },
+        data: value.date,
+      },
+      yAxis: {
+        type: "value",
+        show: true,
+        axisLine: {
+          lineStyle: {
+            color: "#6B798E",
+            fontSize: "12px"
+          }
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            type: "dashed"
+          }
+        }
+      },
+      grid: {
+        top: "45px",
+        left: "0%",
+        right: "0px",
+        bottom: "3%",
+        containLabel: true
+      },
+
+      series: [
+        {
+          name: '中信股份',
+          type: 'bar',
+          barWidth: "24",
+          marginBottom: -20,
+          textAlign: "left",
+          itemStyle: {
+            normal: {
+              color: "#1890FF",
+              label: {
+                show: true, //开启显示
+                position: "top", //在上方显示
+                textStyle: {
+                  //数值样式
+                  color: "black",
+                  fontSize: 14
+                }
+              }
+            }
+          },
+          data: value.incomeData[0].data
+        },
+        {
+          name: '平均行业',
+          type: 'bar',
+          barWidth: "24",
+          marginBottom: -20,
+          textAlign: "left",
+          itemStyle: {
+            normal: {
+              color: "#B53ECE",
+              label: {
+                show: true, //开启显示
+                position: "top", //在上方显示
+                textStyle: {
+                  //数值样式
+                  color: "black",
+                  fontSize: 14
+                }
+              }
+            }
+          },
+          data: value.incomeData[1].data
+        },
+
+      ]
+    }
+    return option
+  }
+  // 判断评分的颜色
+  getColor(value) {
+    let color
+    if (value > 0 && value <= 50) {
+      color = 'red'
+    } else if (value > 50 && value <= 70) {
+      color = 'orange'
+    } else if (value > 70 && value <= 100) {
+      color = 'green'
+    }
+    return color
+  }
+  // 风险图标
+  tipRisk = (value) => { 
+    let str
+    if (value>0 && value<=33) { 
+      str = <Icons type='iconannoucement_risk_n' className='iconannoucement_risk_n'  />
+    }else if (value>33 && value<=66) { 
+      str = <Icons type='iconannoucement_risk_l' className='iconannoucement_risk_l' />
+    }else if (value>66 && value<=100) { 
+      str = <Icons type='iconannoucement_risk_h' className='iconannoucement_risk_h' />
+    }
+    return str
+  }
   render() {
-    const { company, financial_status, one_year } = this.state.data
+    const columns = [
+      {
+        title: '指标',
+        dataIndex: 'index',
+        key: 'index',
+      }, {
+        title: '行业排名',
+        dataIndex: 'ranking',
+        key: 'ranking',
+      }, {
+        title: '状态',
+        dataIndex: 'status',
+        key: 'status',
+        render: (record) => {
+          switch (record) {
+            case 0:
+              return <span><Tooltip placement="topLeft" overlayClassName="tips-bg" title="1.利润结构不合理，经营性利润低，投资性利润高 2.利润同比大幅下滑">
+              <Icon type="exclamation-circle" className='red' style={{fontSize:'20px'}}/>
+            </Tooltip></span>
+            case 1:
+              return <span>
+              <Tooltip placement="topLeft" overlayClassName="tips-bg" title="1.利润同比大幅上升">
+                <Icon type="check-circle" className='green' style={{fontSize:'20px'}} />
+              </Tooltip>
+            </span>
+          }
+        }
+      }
+    ];
+    const { company, financial_status, one_year, rink, income, profit, ability, recent_risk_event } = this.state.data
     return (
       <div className='risk-box'>
 
@@ -396,7 +716,7 @@ class RiskProfile extends Component {
                       <ul className='icon-list'>
                         {financial_status.one_year.ability_list.map((item, index) => (
                           <li key={index} className='item'>
-                            <Icon type={item.icon_name} className={item.icon_name} />
+                            <Icons type={item.icon_name} className={item.icon_name} />
                             <span className='title'>{item.title}</span>
                             <span className='value'>{item.value}</span>
                           </li>
@@ -436,7 +756,7 @@ class RiskProfile extends Component {
                       <ul className='icon-list'>
                         {financial_status.three_year.ability_list.map((item, index) => (
                           <li key={index} className='item'>
-                            <Icon type={item.icon_name} className={item.icon_name} />
+                            <Icons type={item.icon_name} className={item.icon_name} />
                             <span className='title'>{item.title}</span>
                             <span className='value'>{item.value}</span>
                           </li>
@@ -476,7 +796,7 @@ class RiskProfile extends Component {
                       <ul className='icon-list'>
                         {financial_status.five_year.ability_list.map((item, index) => (
                           <li key={index} className='item'>
-                            <Icon type={item.icon_name} className={item.icon_name} />
+                            <Icons type={item.icon_name} className={item.icon_name} />
                             <span className='title'>{item.title}</span>
                             <span className='value'>{item.value}</span>
                           </li>
@@ -500,11 +820,144 @@ class RiskProfile extends Component {
             </Card>
           </div>
           <div className='content-top1'>
-            <div className='overall-ranking'></div>
-            <div className='performance-gain'></div>              
+            <div className='overall-ranking'>
+              <Card
+                title='总排名'
+                bordered={false}
+                extra={<button className='btn'><Icons type='iconbtn_add' className='iconbtn_add' />增加对比</button>}
+              >
+                <div className='tip'> {rink.compare}</div>
+                <EchartsWrapper
+                  option={this.OverallRanking(rink)}
+                  style={{ height: 360 }}
+                />
+              </Card>
+            </div>
+            <div className='performance-gain'>
+              <Card
+                title='业绩收益'
+                bordered={false}
+                // extra 为右上角的操作区域
+                extra={<button className='btn'><Icons type='iconbtn_edit' className='iconbtn_edit' />更改行业</button>}
+              >
+                <div className='tip'> {income.compare}</div>
+                <EchartsWrapper
+                  option={this.performanceGain(income)}
+                  style={{ height: 360 }}
+                />
+              </Card>
+            </div>
+          </div>
+          <div className='content-top2'>
+            <div className={classname('profitability ', 'card')}>
+              <Card
+                title='盈利能力'
+                bordered={false}
+                extra={
+                  <span className='score'>
+                    <Icons type="icongeneral_score" className="icongeneral_score" />
+                    <span>评分：</span>
+                    <span className={this.getColor(profit.score)} style={{
+                      fontSize:'20px'
+                    }}> {profit.score}</span>
+                  </span>
+                }
+              >
+                <Table dataSource={profit.data_source} columns={columns} pagination={false}></Table>
+              </Card>
+            </div>
+            <div className={classname('ability', 'card')}>
+            <Card
+                title='偿债能力'
+                bordered={false}
+                extra={
+                  <span className='score'>
+                    <Icons type="icongeneral_score" className="icongeneral_score" />
+                    <span>评分：</span>
+                    <span className={this.getColor(ability.score)} style={{
+                      fontSize:'20px'
+                    }}>{ability.score}</span>
+                  </span>
+                }
+              >
+                <Table dataSource={ability.data_source} columns={columns} pagination={false}></Table>
+              </Card>
+            </div>
           </div>
         </div>
-
+        <div className='content-top3'>
+            <div className={classname('operation ', 'card')}>
+              <Card
+                title='盈利能力'
+                bordered={false}
+                extra={
+                  <span className='score'>
+                    <Icons type="icongeneral_score" className="icongeneral_score" />
+                    <span>评分：</span>
+                    <span className={this.getColor(profit.score)} style={{
+                      fontSize:'20px'
+                    }}> {profit.score}</span>
+                  </span>
+                }
+              >
+                <Table dataSource={profit.data_source} columns={columns} pagination={false}></Table>
+              </Card>
+            </div>
+            <div className={classname('cash-quality', 'card')}>
+            <Card
+                title='现金质量'
+                bordered={false}
+                extra={
+                  <span className='score'>
+                    <Icons type="icongeneral_score" className="icongeneral_score" />
+                    <span>评分：</span>
+                    <span className={this.getColor(ability.score)} style={{
+                      fontSize:'20px'
+                    }}>{ability.score}</span>
+                  </span>
+                }
+              >
+                <Table dataSource={ability.data_source} columns={columns} pagination={false}></Table>
+              </Card>
+            </div>
+          </div>
+          <div className='content-top4'>
+            <div className={classname('growth ', 'card')}>
+              <Card
+                title='盈利能力'
+                bordered={false}
+                extra={
+                  <span className='score'>
+                    <Icons type="icongeneral_score" className="icongeneral_score" />
+                    <span>评分：</span>
+                    <span className={this.getColor(profit.score)} style={{
+                      fontSize:'20px'
+                    }}> {profit.score}</span>
+                  </span>
+                }
+              >
+                <Table dataSource={profit.data_source} columns={columns} pagination={false}></Table>
+              </Card>
+            </div>
+            <div className={classname('event', 'card')}>
+            <Card
+                title='近期风险事件'
+                bordered={false}
+                extra={
+                  <span>查看更多</span>
+                }
+              >
+               <ul className='ul-list'>
+                {
+                    recent_risk_event.map((item,index) => {
+                      return <li key={index}><span>{this.tipRisk(item.score)}<a href="#">{item.title}</a></span><time>{item.date}</time></li>
+                    })
+                }
+               </ul>
+              </Card>
+            </div>
+          </div>
+          <div className='corporate-earnings' ></div>
       </div>
     )
   }
