@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import classname from 'classname'
 import { Link } from 'react-router-dom';
-import { Input, Card, Tabs, Select, Typography, Tooltip, Table, Icon } from 'antd';
+import { Input, Card, Tabs, Typography, Tooltip, Table, Icon } from 'antd';
 import './style.scss'
 import EchartsWrapper from '../../../compontents/EchartsWrapper'
 import Icons from '../../../compontents/Icons'
@@ -231,6 +231,34 @@ class RiskProfile extends Component {
             date:'2019.03.12',
             score:30
           }
+        ],
+        corporate_earnings:[
+          {
+            img:'/images/caibao.png',
+            title:'1中信股份公布2018年第三季度财报',
+            date:'2019.03.12'
+          },
+          {
+            img:'/images/caibao.png',
+            title:'2中信股份公布2018年第三季度财报',
+            date:'2019.03.12'
+          },
+          {
+            img:'/images/caibao.png',
+            title:'3中信股份公布2018年第三季度财报',
+            date:'2019.03.12'
+          },
+          {
+            img:'/images/caibao.png',
+            title:'4中信股份公布2018年第三季度财报',
+            date:'2019.03.12'
+          },
+          {
+            img:'/images/caibao.png',
+            title:'5中信股份公布2018年第三季度财报',
+            date:'2019.03.12'
+          }
+
         ]
         
       }
@@ -244,13 +272,20 @@ class RiskProfile extends Component {
       },
       tooltip: {},
       legend: {},
+      grid: {
+        top: "80px",
+        left: "2%",
+        right: "3",
+        bottom: "3%",
+        containLabel: true
+      },
       radar: {
         // shape: 'circle',
         name: {
           textStyle: {
             color: '#3A3B46',
             borderRadius: 3,
-            padding: [3, 5]
+            padding: [3, 7]
           }
         },
         indicator: [
@@ -605,6 +640,7 @@ class RiskProfile extends Component {
     return str
   }
   render() {
+    const { company, financial_status, one_year, rink, income, profit, ability, recent_risk_event, corporate_earnings } = this.state.data
     const columns = [
       {
         title: '指标',
@@ -634,7 +670,6 @@ class RiskProfile extends Component {
         }
       }
     ];
-    const { company, financial_status, one_year, rink, income, profit, ability, recent_risk_event } = this.state.data
     return (
       <div className='risk-box'>
 
@@ -723,7 +758,7 @@ class RiskProfile extends Component {
                         ))}
                       </ul>
                       <div className='foot'>
-                        <a className='more'>查看详情</a>
+                        <a className='more' href='#'>查看详情</a>
                       </div>
                     </div>
                   </TabPane>
@@ -763,7 +798,7 @@ class RiskProfile extends Component {
                         ))}
                       </ul>
                       <div className='foot'>
-                        <a className='more'>查看详情</a>
+                        <a className='more'  href='#'> 查看详情</a>
                       </div>
                     </div>
                   </TabPane>
@@ -957,7 +992,19 @@ class RiskProfile extends Component {
               </Card>
             </div>
           </div>
-          <div className='corporate-earnings' ></div>
+          <div className='corporate-earnings'>
+            <Card title='企业财报' bordered={false} extra={<a href='#'>查看更多</a>}>
+              <ul className='ul-list'>
+                {corporate_earnings.map((item,index)=>{
+                  return <li key={index} className='item'>
+                    <img className='img' src={item.img} alt="a"/>
+                    <span className='title'>{item.title}</span>
+                    <span className='date'>{item.date}</span>
+                  </li>
+                })}
+              </ul>
+            </Card>
+          </div>
       </div>
     )
   }

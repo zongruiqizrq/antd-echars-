@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
+import classname from 'classname'
 import {Layout, Menu } from 'antd'
 import Icon from '../Icons/index'
 
@@ -51,9 +51,25 @@ export default class SiteSider extends Component {
   render() {
     const { active, mouseCover} = this.state
     return (
-      <Sider  width={mouseCover ? 180 : 50} className='page'>
-        <div className="logo">
-          <img src={logo} alt="logo" className='logo_img'/>
+      <Sider  
+      width={mouseCover ? 180 : 50} 
+      className={classname('page', mouseCover ?  'page_over' : '')}
+      onMouseEnter={()=>{
+        this.setState({mouseCover:true})
+      }}
+      onMouseLeave={()=>{
+        this.setState({
+          mouseCover:false
+        })
+      }}
+    >
+        <button className={classname('btn', mouseCover ?  'btn_over' : '' )} onClick={()=>{
+          this.setState({
+            mouseCover:false
+          })
+        }}>></button>
+        <div className={classname("logo",mouseCover ? '' :  'logo_over')}>
+          <img src={logo} alt="logo" className={classname('logo_img')}/>
         </div>
         <Menu 
         theme="dark"

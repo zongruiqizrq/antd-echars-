@@ -1,5 +1,8 @@
 .page{
     background:#19274E; 
+    .btn{
+        display: none;
+    }
     .logo{
         padding:15px ;
         display: flex;
@@ -7,13 +10,16 @@
             max-height: 40px;
         }
     }
+    .logo_over{
+        padding-left: 3px;
+    }
     .menu{
         background:#19274E; 
         .item{
             margin:0px;
             height:48px;
             line-height:48px;
-            padding-left: 20px !important;
+            padding-left: 25px !important;
             .nav-text{
                 color:#fff;
                 font-size:16px;
@@ -33,5 +39,17 @@
             }
         }
         
+    }
+}
+.page_over{
+    border-right: 2px solid red;
+    position: relative;
+    .btn_over{
+        position: absolute;
+        left:180px;
+        display: block;
+        top:50%;
+        width: 30px;
+        height: 40px;;
     }
 }
